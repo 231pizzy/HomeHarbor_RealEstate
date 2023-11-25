@@ -320,7 +320,10 @@ export default function Profile() {
       <p className="text-green-700 mt-5">
         {updateSuccess ? "User is updated successfully" : ""}
       </p>
-      <button onClick={handleShowListings} className="text-green-700 w-full">
+      <button
+        onClick={handleShowListings}
+        className="text-white bg-blue-500 border border-blue-500 rounded-md px-4 py-2 transition duration-300 hover:bg-blue-600 hover:border-blue-600 hover:text-white w-full"
+      >
         {showListings ? "Hide Listings" : "Show Listings"}
       </button>
       <p className="text-red-700 mt-5">

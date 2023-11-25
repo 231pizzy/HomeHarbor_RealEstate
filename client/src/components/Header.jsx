@@ -100,7 +100,7 @@ export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <header className="bg-slate-200 shadow-xl">
+    <header className="bg-slate-200 shadow-xl sticky top-0 z-50">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">

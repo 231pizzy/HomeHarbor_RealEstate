@@ -7,15 +7,15 @@ import { sendmail } from "../utils/notification.js";
 export const signup = async (req, res, next) => {
   const { firstName, lastName, userName, phone, company, email, password } =
     req.body;
-  const hasedPassword = bcryptjs.hashSync(password, 10);
+  const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({
     firstName,
     lastName,
     userName,
     phone,
     company,
-    email,
-    password: hasedPassword,
+    email: email.toLowerCase(),
+    password: hashedPassword,
   });
 
   try {
@@ -29,7 +29,8 @@ export const signup = async (req, res, next) => {
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
-    const validUser = await User.findOne({ email });
+    const normalizedEmail = email.toLowerCase();
+    const validUser = await User.findOne({ email: normalizedEmail });
     if (!validUser) return next(errorHandler(404, "User not found"));
     const validPassword = bcryptjs.compareSync(password, validUser.password);
     if (!validPassword) return next(errorHandler(401, "Wrong credentials"));
